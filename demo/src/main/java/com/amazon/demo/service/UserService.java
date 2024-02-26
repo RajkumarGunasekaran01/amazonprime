@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public abstract class UserService {
+public class UserService {
 
     private final UserRepository userRepository;
 
@@ -26,7 +26,9 @@ public abstract class UserService {
         userRepository.save(newUser);
     }
 
-    public abstract void saveUser(User user);
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
 
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);

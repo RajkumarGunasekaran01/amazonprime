@@ -1,6 +1,7 @@
 package com.amazon.demo.model;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -10,6 +11,9 @@ public class User {
     @Column(name = "UserID")
     private Long id;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Subscription> subscriptions;
+
     @Column(name = "Username", nullable = false)
     private String username;
 
@@ -18,6 +22,7 @@ public class User {
 
     @Column(name = "Password", nullable = false)
     private String password;
+
 
     public String getPassword() {
         return password;
@@ -49,5 +54,9 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Subscription> getSubscriptions() {
+        return subscriptions;
     }
 }
